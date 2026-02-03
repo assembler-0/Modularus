@@ -1,0 +1,10 @@
+.vscode/
+.build/
+qemu.log
+*.o
+*.obj
+*.log
+*.tmp
+*.swp
+*.img
+*.iso
