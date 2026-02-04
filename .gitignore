@@ -10,3 +10,8 @@ Repo.sh
 *.img
 *.iso
 compile_commands.json
+
+limine/
+edk2-ovmf/
+.cache/
+.build/
