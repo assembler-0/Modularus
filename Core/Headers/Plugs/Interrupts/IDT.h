@@ -30,6 +30,7 @@ typedef struct IDT_OPERATIONS
 {
     int (*Init)(SYSTEM_ERROR*);
     void (*Exit)(SYSTEM_ERROR*);
+    
     int (*SetEntry)(uint8_t, IDT_ENTRY*, SYSTEM_ERROR*);
     int (*GetEntry)(uint8_t, IDT_ENTRY*, SYSTEM_ERROR*);
     int (*Load)(SYSTEM_ERROR*);

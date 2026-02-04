@@ -6,27 +6,27 @@
 #ifdef BOOTVENDOR_Limine
     /*Services*/
     Requested
-    volatile struct limine_hhdm_request HHDM=
+    volatile struct limine_hhdm_request ReqHHDM=
     {
         .id = LIMINE_HHDM_REQUEST, .revision = LimineRevision
     };  
     Requested
-    volatile struct limine_memmap_request MEMORYMAP=
+    volatile struct limine_memmap_request ReqMEMORYMAP=
     {
         .id = LIMINE_MEMMAP_REQUEST, .revision = LimineRevision
     };  
     Requested
-    volatile struct limine_framebuffer_request FRAMEBUFFER=
+    volatile struct limine_framebuffer_request ReqFRAMEBUFFER=
     {
         .id = LIMINE_FRAMEBUFFER_REQUEST, .revision = LimineRevision
     };  
     Requested
-    volatile struct limine_smp_request SMP=
+    volatile struct limine_smp_request ReqSMP=
     {
         .id = LIMINE_SMP_REQUEST, .revision = LimineRevision
     };  
     Requested
-    volatile struct limine_module_request MODULE=
+    volatile struct limine_module_request ReqMODULE=
     {
         .id = LIMINE_MODULE_REQUEST, .revision = LimineRevision
     };
@@ -39,23 +39,23 @@ void* Limine_REQUEST(REQUEST_TYPE Type, SYSTEM_ERROR* Error)
     {
         case RequestHHDM:
         {
-            return (void*)&HHDM;
+            return (void*)&ReqHHDM;
         }
         case RequestMEMORYMAP:
         {
-            return (void*)&MEMORYMAP;
+            return (void*)&ReqMEMORYMAP;
         }
         case RequestFRAMEBUFFER:
         {
-            return (void*)&FRAMEBUFFER;
+            return (void*)&ReqFRAMEBUFFER;
         }
         case RequestSMP:
         {
-            return (void*)&SMP;
+            return (void*)&ReqSMP;
         }
         case RequestMODULE:
         {
-            return (void*)&MODULE;
+            return (void*)&ReqMODULE;
         }
         default:
         {

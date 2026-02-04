@@ -54,7 +54,7 @@ typedef struct FRAMEBUFFER_OPERATIONS
 
 typedef struct
 {
-    FRAMEBUFFER_INFORMATION  Info;
+    FRAMEBUFFER_INFORMATION  Information;
     FRAMEBUFFER_OPERATIONS*  Operations;
     void*                    Private;
 } FRAMEBUFFER;
