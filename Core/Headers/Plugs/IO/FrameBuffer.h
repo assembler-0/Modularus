@@ -48,7 +48,7 @@ typedef struct
 
 typedef struct FRAMEBUFFER_OPERATIONS
 {
-    int (*Init)(FRAMEBUFFER_INFORMATION*, SYSTEM_ERROR*);
+    int (*Init)(SYSTEM_ERROR*);
     void (*Exit)(SYSTEM_ERROR*);
 } FRAMEBUFFER_OPERATIONS;
 

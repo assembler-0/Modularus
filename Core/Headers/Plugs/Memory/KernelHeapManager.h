@@ -8,6 +8,7 @@ typedef struct HEAP_OPERATIONS
 {
     int (*Init)(SYSTEM_ERROR*);
     void (*Exit)(SYSTEM_ERROR*);
+    
     void* (*Allocate)(uint64_t, SYSTEM_ERROR*);
     void (*Free)(void*, SYSTEM_ERROR*);
 } HEAP_OPERATIONS;

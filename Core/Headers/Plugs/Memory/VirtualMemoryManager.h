@@ -58,6 +58,7 @@ typedef struct VMM_OPERATIONS
 {
     int (*Init)(SYSTEM_ERROR*);
     void (*Exit)(SYSTEM_ERROR*);
+    
     int (*MapPage)(uint64_t, uint64_t, uint64_t, SYSTEM_ERROR*);
     int (*UnmapPage)(uint64_t, SYSTEM_ERROR*);
     uint64_t (*GetPhysical)(uint64_t, SYSTEM_ERROR*);

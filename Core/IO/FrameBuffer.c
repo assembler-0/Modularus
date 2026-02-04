@@ -22,7 +22,7 @@ int RegisterFrameBuffer(FRAMEBUFFER* FrameBuffer, SYSTEM_ERROR* Error)
     
     if(FrameBuffer->Operations->Init)
     {
-        return FrameBuffer->Operations->Init(&FrameBuffer->Info, Error);
+        return FrameBuffer->Operations->Init(Error);
     }
     
     return GeneralOK;
@@ -58,7 +58,7 @@ int InitFrameBuffer(FRAMEBUFFER* FrameBuffer, SYSTEM_ERROR* Error)
         return -BadParameters;
     }
 
-    return FrameBuffer->Operations->Init(&FrameBuffer->Info, Error);
+    return FrameBuffer->Operations->Init(Error);
 }
 
 int ExitFrameBuffer(FRAMEBUFFER* FrameBuffer, SYSTEM_ERROR* Error)

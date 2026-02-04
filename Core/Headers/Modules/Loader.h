@@ -14,6 +14,9 @@ typedef struct
 
 typedef struct LOADER_OPERATIONS
 {
+    int (*Init)(SYSTEM_ERROR*);
+    void (*Exit)(SYSTEM_ERROR*);
+    
     LOADED_FILE* (*Load)(const char*, SYSTEM_ERROR*);
     int (*Unload)(LOADED_FILE*, SYSTEM_ERROR*);
 } LOADER_OPERATIONS;

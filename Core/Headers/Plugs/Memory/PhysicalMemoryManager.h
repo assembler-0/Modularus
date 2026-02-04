@@ -54,6 +54,7 @@ typedef struct PMM_OPERATIONS
 {
     int (*Init)(SYSTEM_ERROR*);
     void (*Exit)(SYSTEM_ERROR*);
+    
     uint64_t (*AllocatePages)(uint64_t, SYSTEM_ERROR*);
     void (*FreePages)(uint64_t, uint64_t, SYSTEM_ERROR*);
 } PMM_OPERATIONS;
