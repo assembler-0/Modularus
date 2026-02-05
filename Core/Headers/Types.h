@@ -14,6 +14,7 @@
 #    include <stddef.h>
 #    include <stdint.h>
 #    include <stdnoreturn.h>
+#    include <errno.h>
 
 #else
 
@@ -27,5 +28,6 @@
 #    include "Types/__int__.h"
 #    include "Types/__lims__.h"
 #    include "Types/__noret__.h"
+#    include "Types/__errno__.h"
 
 #endif

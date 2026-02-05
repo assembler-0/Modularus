@@ -16,7 +16,6 @@ CFLAGS := \
 	-g \
 	-Wall \
 	-Wextra \
-	-Werror \
     -ffreestanding \
 	-fno-stack-protector \
 	-fno-stack-check \

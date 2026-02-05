@@ -1,8 +1,8 @@
-CHAIN ?= gcc
+CHAIN ?= clang # clang as default since people likely have this instead of x86_64-elf-gcc
 TARGET_TRIPLE := x86_64-elf
 HOST_CC = cc
 
-ifeq ($(CHAIN), gcc)
+ifeq ($(CHAIN), $(TARGET_TRIPLE)-gcc)
 	CC := $(TARGET_TRIPLE)-gcc
 	LD := $(TARGET_TRIPLE)-ld
 	AS := nasm
