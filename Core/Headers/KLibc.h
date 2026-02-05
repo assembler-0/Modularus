@@ -84,12 +84,6 @@ double strtod(const char *nptr, char **endptr);
 float strtof(const char *nptr, char **endptr);
 #endif
 
-/* Formatted input */
-#ifdef CONFIG_STRING_SCANF
-int vsscanf(const char *buf, const char *fmt, va_list args);
-int sscanf(const char *buf, const char *fmt, ...);
-#endif
-
 /* Pattern matching */
 #ifdef CONFIG_STRING_PATTERN
 int fnmatch(const char *pattern, const char *string, int flags);
