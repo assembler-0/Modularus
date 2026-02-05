@@ -8,27 +8,27 @@
     Requested
     volatile struct limine_hhdm_request ReqHHDM=
     {
-        .id = LIMINE_HHDM_REQUEST, .revision = LimineRevision
+        .id = LIMINE_HHDM_REQUEST_ID, .revision = LimineRevision
     };  
     Requested
     volatile struct limine_memmap_request ReqMEMORYMAP=
     {
-        .id = LIMINE_MEMMAP_REQUEST, .revision = LimineRevision
+        .id = LIMINE_MEMMAP_REQUEST_ID, .revision = LimineRevision
     };  
     Requested
     volatile struct limine_framebuffer_request ReqFRAMEBUFFER=
     {
-        .id = LIMINE_FRAMEBUFFER_REQUEST, .revision = LimineRevision
+        .id = LIMINE_FRAMEBUFFER_REQUEST_ID, .revision = LimineRevision
     };  
     Requested
-    volatile struct limine_smp_request ReqSMP=
+    volatile struct limine_mp_request ReqMP=
     {
-        .id = LIMINE_SMP_REQUEST, .revision = LimineRevision
+        .id = LIMINE_MP_REQUEST_ID, .revision = LimineRevision
     };  
     Requested
     volatile struct limine_module_request ReqMODULE=
     {
-        .id = LIMINE_MODULE_REQUEST, .revision = LimineRevision
+        .id = LIMINE_MODULE_REQUEST_ID, .revision = LimineRevision
     };
 
     /*Request*/
@@ -50,7 +50,7 @@
             }
             case RequestSMP:
             {
-                return (void*)&ReqSMP;
+                return (void*)&ReqMP;
             }
             case RequestMODULE:
             {

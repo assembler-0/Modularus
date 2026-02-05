@@ -9,3 +9,5 @@ Repo.sh
 *.swp
 *.img
 *.iso
+Backup/
+Dependencies/

@@ -35,7 +35,7 @@ static int Default_FrameBufferInit(SYSTEM_ERROR* Error)
     return GeneralOK;
 }
 
-static void Default_FrameBufferExit(SYSTEM_ERROR* Error)
+static void Default_FrameBufferExit(SYSTEM_ERROR* Error UNUSED)
 {
     DefaultFrameBufferRequest = NULL;
 }

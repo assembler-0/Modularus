@@ -2,11 +2,11 @@
 
 #include <Defaults/Defaults.h>
 
-void _start(void)
-{
-    SYSTEM_ERROR Err;
-    SYSTEM_ERROR* Error = &Err;
+SYSTEM_ERROR Err;
+SYSTEM_ERROR* Error = &Err;
     
+void KernelBoot(void)
+{
     LoadDefaults(Error);
     
     for(;;)
