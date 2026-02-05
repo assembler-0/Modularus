@@ -1,13 +1,13 @@
+#include "Errors.h"
 #include <__KCONF.h>
 
 #include <Defaults/Defaults.h>
 
-void _start(void)
-{
-    SYSTEM_ERROR Err;
-    SYSTEM_ERROR* Error = &Err;
-    
-    LoadDefaults(Error);
+static SYSTEM_ERROR error;
+
+void kmain(void)
+{   
+    LoadDefaults(&error);
     
     for(;;)
     {

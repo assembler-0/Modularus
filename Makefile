@@ -17,9 +17,9 @@ export BUILD_DIR := $(PROJ_ROOT)/.build
 ISO_ROOT 		 := $(BUILD_DIR)/iso_root
 IMAGE_NAME 		 := modularus
 
-ISO_IMG := $(BUILD_DIR)/modularus.iso
+ISO_IMG  := $(BUILD_DIR)/modularus.iso
 DISK_IMG := $(BUILD_DIR)/modularus.img
-KERNEL := $(BUILD_DIR)/bin/modularus.elf
+KERNEL 	 := $(BUILD_DIR)/bin/modularus.elf
 
 OK_COLOR    := \033[0;32m
 INFO_COLOR  := \033[0;33m

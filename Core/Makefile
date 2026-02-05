@@ -4,28 +4,53 @@ LD      ?= x86_64-elf-ld
 CHAIN   ?= gcc
 
 PROJ_ROOT ?= ..
-BUILD_DIR ?= $(PROJ_ROOT)/.Build/Core
+BUILD_DIR ?= $(PROJ_ROOT)/.build/
 OBJ_DIR   := $(BUILD_DIR)/obj
 BIN_DIR   := $(BUILD_DIR)/bin
 
 TARGET    := $(BIN_DIR)/modularus.elf
 
 CFLAGS := \
-    -std=c11 -O2 -g -Wall -Wextra -Werror \
-    -ffreestanding -fno-stack-protector -fno-stack-check \
-    -fno-lto -fno-pie -fno-pic -fno-builtin \
+    -std=c23 \
+	-O2 \
+	-g \
+	-Wall \
+	-Wextra \
+	-Werror \
+    -ffreestanding \
+	-fno-stack-protector \
+	-fno-stack-check \
+    -fno-lto \
+	-fno-pie \
+	-fno-pic \
+	-fno-builtin \
     -fno-omit-frame-pointer \
-    -m64 -march=x86-64 -mcmodel=kernel -mno-red-zone \
-    -mno-mmx -mno-sse -mno-sse2 -mno-80387 \
-    -IHeaders -MMD -MP
+    -m64 \
+	-march=x86-64 \
+	-mcmodel=kernel \
+	-mno-red-zone \
+    -mno-mmx \
+	-mno-sse \
+	-mno-sse2 \
+	-mno-80387 \
+    -IHeaders \
+	-MMD \
+	-MP
 
 ifeq ($(CHAIN), clang)
     CFLAGS += -Wno-unknown-warning-option
 endif
 
 ASFLAGS := -f elf64
-LDFLAGS := -T KrnLink.ld -nostdlib -static -no-pie -m elf_x86_64 \
-           -z max-page-size=0x1000 -z noexecstack -z norelro
+LDFLAGS := \
+	-T KrnLink.ld \
+	-nostdlib \
+	-static \
+	-no-pie \
+	-m elf_x86_64 \
+    -z max-page-size=0x1000 \
+	-z noexecstack \
+	-z norelro
 
 C_SRCS   := $(shell find . -name "*.c")
 ASM_SRCS := $(shell find . -name "*.asm")
