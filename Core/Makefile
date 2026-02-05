@@ -1,99 +1,88 @@
-Compiler 	:= x86_64-elf-gcc
-Assembler 	:= nasm
-Linker 		:= x86_64-elf-ld
+CC      ?= x86_64-elf-gcc
+AS      ?= nasm
+LD      ?= x86_64-elf-ld
+CHAIN   ?= gcc
 
-CFlags 		:= \
--std=c11 \
--ffreestanding \
--fno-stack-protector \
--fno-stack-check \
--fno-lto \
--fno-pie \
--fno-pic \
--fno-builtin \
--fno-omit-frame-pointer \
--mno-red-zone \
--mno-mmx \
--mno-sse \
--mno-sse2 \
--mno-sse3 \
--mno-ssse3 \
--mno-sse4.1 \
--mno-sse4.2 \
--mno-sse4 \
--mno-avx \
--mno-avx2 \
--mno-80387 \
--m64 \
--march=x86-64 \
--mcmodel=kernel \
--Wall \
--Wextra \
--Werror \
--Wno-unused-parameter \
--Wno-unused-variable \
--O2
+PROJ_ROOT ?= ..
+BUILD_DIR ?= $(PROJ_ROOT)/.build/
+OBJ_DIR   := $(BUILD_DIR)/obj
+BIN_DIR   := $(BUILD_DIR)/bin
 
-AsmFlags 	:= \
--f elf64
+TARGET    := $(BIN_DIR)/modularus.elf
 
-LinkerFlags := \
--nostdlib \
--static \
--no-pie \
--m elf_x86_64 \
--z max-page-size=0x1000 \
--z noexecstack \
--z norelro \
--T KrnLink.ld
+CFLAGS := \
+    -std=c23 \
+	-O2 \
+	-g \
+	-Wall \
+	-Wextra \
+	-Werror \
+    -ffreestanding \
+	-fno-stack-protector \
+	-fno-stack-check \
+    -fno-lto \
+	-fno-pie \
+	-fno-pic \
+	-fno-builtin \
+    -fno-omit-frame-pointer \
+    -m64 \
+	-march=x86-64 \
+	-mcmodel=kernel \
+	-mno-red-zone \
+    -mno-mmx \
+	-mno-sse \
+	-mno-sse2 \
+	-mno-80387 \
+    -IHeaders \
+	-MMD \
+	-MP
 
-#	Includes
-CFlags		+= -IHeaders
-CFlags		+= -I../limine
+ifeq ($(CHAIN), clang)
+    CFLAGS += -Wno-unknown-warning-option
+endif
 
-TempBuild 	:= .Build
-ObjectRoot 	:= $(TempBuild)/obj
-BinaryRoot 	:= $(TempBuild)/bin
+ASFLAGS := -f elf64
+LDFLAGS := \
+	-T KrnLink.ld \
+	-nostdlib \
+	-static \
+	-no-pie \
+	-m elf_x86_64 \
+    -z max-page-size=0x1000 \
+	-z noexecstack \
+	-z norelro
 
-CSources 	:= $(shell find . -name "*.c" -type f)
-AsmSources 	:= $(shell find . -name "*.asm" -type f)
+C_SRCS   := $(shell find . -name "*.c")
+ASM_SRCS := $(shell find . -name "*.asm")
 
-CObjects 	:= $(patsubst ./%.c, $(ObjectRoot)/%.o, $(CSources))
-AsmObjects 	:= $(patsubst ./%.asm, $(ObjectRoot)/%.o, $(AsmSources))
-AllObjects 	:= $(CObjects) $(AsmObjects)
+OBJS := $(C_SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS += $(ASM_SRCS:%.asm=$(OBJ_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-Target 		:= $(BinaryRoot)/corehotkrnl
+.PHONY: all clean
 
-.PHONY: \
-all \
-clean
+all: $(TARGET)
 
-all: $(Target)
-
-$(Target): $(AllObjects) | $(BinaryRoot)
-
-	$(Linker) $(AllObjects) $(LinkerFlags) -o $@
-
-#	C
-$(ObjectRoot)/%.o: %.c | $(ObjectRoot)
-
+# Linking the Kernel
+$(TARGET): $(OBJS)
+	@echo -e "  LD      $(notdir $@)"
 	@mkdir -p $(dir $@)
-	$(Compiler) $(CFlags) -c $< -o $@
+	@$(LD) $(LDFLAGS) $(OBJS) -o $@
 
-#	ASM
-$(ObjectRoot)/%.o: %.asm | $(ObjectRoot)
-
+# Compiling C sources
+$(OBJ_DIR)/%.o: %.c
+	@echo -e "  CC      $(notdir $<)"
 	@mkdir -p $(dir $@)
-	$(Assembler) $(AsmFlags) $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(ObjectRoot):
-
-	mkdir -p $(ObjectRoot)
-
-$(BinaryRoot):
-
-	mkdir -p $(BinaryRoot)
+# Assembling Sources
+$(OBJ_DIR)/%.o: %.asm
+	@echo -e "  AS      $(notdir $<)"
+	@mkdir -p $(dir $@)
+	@$(AS) $(ASFLAGS) $< -o $@
 
 clean:
+	@echo -e "  CLEAN   Core"
+	@rm -rf $(BUILD_DIR)
 
-	rm -rf $(TempBuild)
+-include $(DEPS)
