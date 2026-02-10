@@ -36,16 +36,16 @@ typedef enum VFS_NODE_TYPE
 /*Open Flags*/
 typedef enum VFS_OPEN_FLAGS
 {
-    VfsOpenFlag_NONE,
-    VfsOpenFlag_READONLY,
-    VfsOpenFlag_WRITEONLY,
-    VfsOpenFlag_READWRITE,
-    VfsOpenFlag_CREATE,
-    VfsOpenFlag_TRUNCATE,
-    VfsOpenFlag_APPEND,
-    VfsOpenFlag_EXCLUDE,
-    VfsOpenFlag_SYNC,
-    VfsOpenFlag_DIRECT
+    VfsOpenFlag_NONE      = 0,
+    VfsOpenFlag_READONLY = 1 << 0,
+    VfsOpenFlag_WRITEONLY= 1 << 1,
+    VfsOpenFlag_READWRITE= 1 << 2,
+    VfsOpenFlag_CREATE   = 1 << 3,
+    VfsOpenFlag_TRUNCATE = 1 << 4,
+    VfsOpenFlag_APPEND   = 1 << 5,
+    VfsOpenFlag_EXCLUDE  = 1 << 6,
+    VfsOpenFlag_SYNC     = 1 << 7,
+    VfsOpenFlag_DIRECT   = 1 << 8
 } VFS_OPEN_FLAGS;
 
 /*Seek Wheel*/
@@ -59,63 +59,63 @@ typedef enum VFS_SEEK_WHENCE
 /*Permissions*/
 typedef enum VFS_PERMISSION_MODE
 {
-    VFSMode_NONE,
-    
-    /*User*/
-    VFSMode_XUSR,
-    VFSMode_WUSR,
-    VFSMode_RUSR,
-    
-    /*Group*/
-    VFSMode_XGRP,
-    VFSMode_WGRP,
-    VFSMode_RGRP,
+    VFSMode_NONE = 0,
 
-    /*Other*/
-    VFSMode_XOTH,
-    VFSMode_WOTH,
-    VFSMode_ROTH
+    /* User */
+    VFSMode_RUSR = 1 << 8,
+    VFSMode_WUSR = 1 << 7,
+    VFSMode_XUSR = 1 << 6,
+
+    /* Group */
+    VFSMode_RGRP = 1 << 5,
+    VFSMode_WGRP = 1 << 4,
+    VFSMode_XGRP = 1 << 3,
+
+    /* Other */
+    VFSMode_ROTH = 1 << 2,
+    VFSMode_WOTH = 1 << 1,
+    VFSMode_XOTH = 1 << 0
 } VFS_PERMISSION_MODE;
 
 /*IO*/
 typedef enum VFS_IO_FLAGS
 {
-    VFSIO_NONE,
-    VFSIO_FUA,
-    VFSIO_SYNC,
-    VFSIO_NOCACHE
+    VFSIO_NONE    = 0,
+    VFSIO_FUA     = 1 << 0,
+    VFSIO_SYNC    = 1 << 1,
+    VFSIO_NOCACHE = 1 << 2
 } VFS_IO_FLAGS;
 
 /*Mount*/
 typedef enum VFS_MOUNT_OPTION
 {
-    VFSMount_NONE,
-    VFSMount_READONLY,
-    VFSMount_NOEXECUTE,
-    VFSMount_NODEVICE,
-    VFSMount_NOSUID,
-    VFSMount_SYNC,
-    VFSMount_NOATIME
+    VFSMount_NONE      = 0,
+    VFSMount_READONLY  = 1 << 0,
+    VFSMount_NOEXECUTE = 1 << 1,
+    VFSMount_NODEVICE  = 1 << 2,
+    VFSMount_NOSUID    = 1 << 3,
+    VFSMount_SYNC      = 1 << 4,
+    VFSMount_NOATIME   = 1 << 5
 } VFS_MOUNT_OPTION;
 
 /*Name*/
 typedef enum VFS_RENAME_FLAGS
 {
-    VFSRename_NONE,
-    VFSRename_NOREPLACE,
-    VFSRename_EXCHANGE,
-    VFSRename_WHITEOUT
+    VFSRename_NONE      = 0,
+    VFSRename_NOREPLACE = 1 << 0,
+    VFSRename_EXCHANGE  = 1 << 1,
+    VFSRename_WHITEOUT  = 1 << 2
 } VFS_RENAME_FLAGS;
 
 /*Notify*/
 typedef enum VFS_NOTIFY_MASK
 {
-    VFSNotify_NONE,
-    VFSNotify_CREATE,
-    VFSNotify_DELETE,
-    VFSNotify_WRITE,
-    VFSNotify_MOVE,
-    VFSNotify_ATTRIBUTE,
+    VFSNotify_NONE      = 0,
+    VFSNotify_CREATE    = 1 << 0,
+    VFSNotify_DELETE    = 1 << 1,
+    VFSNotify_WRITE     = 1 << 2,
+    VFSNotify_MOVE      = 1 << 3,
+    VFSNotify_ATTRIBUTE = 1 << 4
 } VFS_NOTIFY_MASK;
 
 typedef struct VFS_TIME
