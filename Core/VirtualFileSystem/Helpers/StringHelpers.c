@@ -2,7 +2,7 @@
 #include <Errors.h>
 
 int
-IsSeperator(char Char, SYSTEM_ERROR* Error UNUSED)
+IsSeperator(char Char, SYSTEM_ERROR* Error __UNUSED)
 {
     return Char == '/';
 }

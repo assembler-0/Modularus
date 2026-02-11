@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 int
-VfsSetCwd(const char* Path UNUSED, SYSTEM_ERROR* Error UNUSED)
+VfsSetCwd(const char* Path __UNUSED, SYSTEM_ERROR* Error __UNUSED)
 {
     /*Defaulted to ROOT (/)*/
     /*TODO: Make it actually do something at least :sob:*/

@@ -62,7 +62,7 @@ VnodeGetAttr(VFS_NODE* Node, VFS_STAT* Buffer, SYSTEM_ERROR* Error)
 }
 
 int
-VnodeSetAttr(VFS_NODE* Node UNUSED, const VFS_STAT* Buffer UNUSED, SYSTEM_ERROR* Error)
+VnodeSetAttr(VFS_NODE* Node __UNUSED, const VFS_STAT* Buffer __UNUSED, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VnodeSetAttr(Code) \
         ErrorOut(Error, Code, FUNC_VnodeSetAttr)

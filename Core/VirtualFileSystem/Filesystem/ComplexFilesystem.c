@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 int
-VfsRegisterDevNode(const char* Path, void* Private, long Flags UNUSED, SYSTEM_ERROR* Error)
+VfsRegisterDevNode(const char* Path, void* Private, long Flags __UNUSED, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VfsRegisterDevNode(Code) \
         ErrorOut(Error, Code, FUNC_VfsRegisterDevNode)
@@ -60,7 +60,7 @@ VfsRegisterDevNode(const char* Path, void* Private, long Flags UNUSED, SYSTEM_ER
 }
 
 int
-VfsUnregisterDevNode(const char* Path UNUSED, SYSTEM_ERROR* Error UNUSED)
+VfsUnregisterDevNode(const char* Path __UNUSED, SYSTEM_ERROR* Error __UNUSED)
 {
     return GeneralOK;
 }
@@ -122,7 +122,7 @@ VfsSetDefaultFs(const char* Name, SYSTEM_ERROR* Error)
 }
 
 const char*
-VfsGetDefaultFs(SYSTEM_ERROR* Error UNUSED)
+VfsGetDefaultFs(SYSTEM_ERROR* Error __UNUSED)
 {
     return DefaultFileSystem;
 }

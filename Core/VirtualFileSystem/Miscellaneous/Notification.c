@@ -4,19 +4,19 @@
 #include <DirtyHeap.h>
 
 int
-VfsNotifySubscribe(const char* Path UNUSED, long __Mask__ UNUSED, SYSTEM_ERROR* UNUSED)
+VfsNotifySubscribe(const char* Path __UNUSED, long __Mask__ __UNUSED, SYSTEM_ERROR* __UNUSED)
 {
     return GeneralOK;
 }
 
 int
-VfsNotifyUnsubscribe(const char* Path UNUSED, SYSTEM_ERROR* Error UNUSED)
+VfsNotifyUnsubscribe(const char* Path __UNUSED, SYSTEM_ERROR* Error __UNUSED)
 {
     return GeneralOK;
 }
 
 int
-VfsNotifyPoll(const char* Path UNUSED, long* OutMask, SYSTEM_ERROR* Error)
+VfsNotifyPoll(const char* Path __UNUSED, long* OutMask, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VfsNotifyPoll(Code) \
         ErrorOut(Error, Code, FUNC_VfsNotifyPoll)

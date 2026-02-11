@@ -4,13 +4,13 @@
 #include <DirtyHeap.h>
 
 int
-VfsPruneCaches(SYSTEM_ERROR* Error UNUSED)
+VfsPruneCaches(SYSTEM_ERROR* Error __UNUSED)
 {
     return GeneralOK;
 }
 
 int
-VfsSetDirCacheLimit(long Value, SYSTEM_ERROR* Error UNUSED)
+VfsSetDirCacheLimit(long Value, SYSTEM_ERROR* Error __UNUSED)
 {   
     DirectoryCacheLimit = Value;
     
@@ -18,13 +18,13 @@ VfsSetDirCacheLimit(long Value, SYSTEM_ERROR* Error UNUSED)
 }
 
 long
-VfsGetDirCacheLimit(SYSTEM_ERROR* Error UNUSED)
+VfsGetDirCacheLimit(SYSTEM_ERROR* Error __UNUSED)
 {
     return DirectoryCacheLimit;
 }
 
 int
-VfsSetFileCacheLimit(long Value, SYSTEM_ERROR* Error UNUSED)
+VfsSetFileCacheLimit(long Value, SYSTEM_ERROR* Error __UNUSED)
 {
     FileCacheLimit = Value;
     
@@ -32,13 +32,13 @@ VfsSetFileCacheLimit(long Value, SYSTEM_ERROR* Error UNUSED)
 }
 
 long
-VfsGetFileCacheLimit(SYSTEM_ERROR* Error UNUSED)
+VfsGetFileCacheLimit(SYSTEM_ERROR* Error __UNUSED)
 {
     return FileCacheLimit;
 }
 
 int
-VfsSetIoBlockSize(long Value, SYSTEM_ERROR* Error UNUSED)
+VfsSetIoBlockSize(long Value, SYSTEM_ERROR* Error __UNUSED)
 {
     IOBlockSize = Value;
     
@@ -46,7 +46,7 @@ VfsSetIoBlockSize(long Value, SYSTEM_ERROR* Error UNUSED)
 }
 
 long
-VfsGetIoBlockSize(SYSTEM_ERROR* Error UNUSED)
+VfsGetIoBlockSize(SYSTEM_ERROR* Error __UNUSED)
 {
     return IOBlockSize;
 }

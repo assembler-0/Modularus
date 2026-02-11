@@ -185,7 +185,7 @@ VfsTruncate(const char* Path, long Length, SYSTEM_ERROR* Error)
 }
 
 int
-VfsCopy(const char* Source, const char* Destination, long Flags UNUSED, SYSTEM_ERROR* Error)
+VfsCopy(const char* Source, const char* Destination, long Flags __UNUSED, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VfsCopy(Code) \
         ErrorOut(Error, Code, FUNC_VfsCopy)

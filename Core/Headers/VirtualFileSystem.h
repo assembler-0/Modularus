@@ -219,7 +219,7 @@ typedef struct SUPER_OPERATIONS
 
 typedef struct FILESYSTEM_TYPE
 {
-    const char* Name; /*Fat32*/
+    const char* Name;
     SUPER_BLOCK* (*Mount)(const char*, const char*, SYSTEM_ERROR*);
     void* Private;
 } FILESYSTEM_TYPE;
@@ -227,40 +227,40 @@ typedef struct FILESYSTEM_TYPE
 /*SUPER_BLOCK*/
 struct SUPER_BLOCK
 {
-    const FILESYSTEM_TYPE*  Type;
-    void*                   Device;
-    long                    Flags;
-    VFS_NODE*               Root;
+    const FILESYSTEM_TYPE* Type;
+    void* Device;
+    long Flags;
+    VFS_NODE* Root;
     const SUPER_OPERATIONS* Operations;
-    void*                   Private;
+    void* Private;
 };
 
 /*Nodes*/
 struct VFS_NODE
 {
-    VFS_NODE_TYPE               Type;
+    VFS_NODE_TYPE Type;
     const VFS_NODE_OPERATIONS* Operations;
-    SUPER_BLOCK*               SuperBlock;
-    void*                      Private;
-    long                       ReferenceCount;
+    SUPER_BLOCK* SuperBlock;
+    void* Private;
+    long ReferenceCount;
 };
 
 struct DIRECTORY_ENTRY
 {
-    const char*      Name;
+    const char* Name;
     DIRECTORY_ENTRY* Parent;
-    VFS_NODE*        Node;
-    long             Flags;
-}; /*DIRECTORY_ENTRY*/
+    VFS_NODE* Node;
+    long Flags;
+};
 
 struct FILE
 {
     VFS_NODE* Node;
-    long      Offset;
-    long      Flags;
-    long      ReferenceCount;
-    void*     Private;
-}; /*Filentry*/
+    long Offset;
+    long Flags;
+    long ReferenceCount;
+    void* Private;
+};
 
 
 extern const long MaxFileSystemTypes;
@@ -271,7 +271,7 @@ extern long FileSystemCount;
 typedef struct MOUNT_ENTRY
 {
     SUPER_BLOCK* SuperBlock;
-    char         Path[1024];
+    char Path[1024];
 } MOUNT_ENTRY;
 
 extern MOUNT_ENTRY Mounts[64];
