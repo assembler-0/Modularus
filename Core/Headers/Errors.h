@@ -166,6 +166,34 @@ enum
     FUNC_VfsSetIoBlockSize,
     FUNC_VfsGetIoBlockSize,
 
+    /*System*/
+    FUNC_SystemInit,
+    FUNC_SystemShutdown,
+    FUNC_SystemCreateNode,
+    FUNC_SystemDeleteNode,
+    FUNC_SystemFindNode,
+    FUNC_SystemAttachNode,
+    FUNC_SystemDetachNode,
+    FUNC_SystemGetRoot,
+    FUNC_SystemCreateFile,
+    FUNC_SystemCreateDirectory,
+    FUNC_SystemVfsOpen,
+    FUNC_SystemVfsClose,
+    FUNC_SystemVfsRead,
+    FUNC_SystemVfsWrite,
+    FUNC_SystemVfsReaddir,
+    FUNC_SystemVfsLookup,
+    FUNC_SystemVfsStat,
+    FUNC_SystemGetattr,
+    FUNC_SystemSetattr,
+    FUNC_SystemStatFs,
+    FUNC_SystemSync,
+    FUNC_SystemRelease,
+    FUNC_SystemSetContext,
+    FUNC_SystemGetContext,
+    FUNC_SystemGetContextSize,
+    FUNC_SystemWalkPath,
+
     MaxTraceback = 10000,
 } TRACEBACK_ID; /*Can also be called function IDs*/
 
@@ -250,9 +278,9 @@ TraceBackMap[MaxTraceback]=
     
     "Core/Headers/Boot/PreBoot.h->Limine_REQUEST",
     
-    "Core/KExports.c->LookUpKExport",
+    "Core/Main_KExports.c->LookUpKExport",
     
-    "Core/Errors.c->RegisterErrorContext",
+    "Core/Main_Errors.c->RegisterErrorContext",
 
     "Core/VirtualFileSystem/*->VfsInit",
     "Core/VirtualFileSystem/*->VfsShutdown",
@@ -349,6 +377,34 @@ TraceBackMap[MaxTraceback]=
     "Core/VirtualFileSystem/*->VfsGetFileCacheLimit",
     "Core/VirtualFileSystem/*->VfsSetIoBlockSize",
     "Core/VirtualFileSystem/*->VfsGetIoBlockSize",
+
+    "Core/System/*->SystemInit",
+    "Core/System/*->SystemShutdown",
+    "Core/System/*->SystemCreateNode",
+    "Core/System/*->SystemDeleteNode",
+    "Core/System/*->SystemFindNode",
+    "Core/System/*->SystemAttachNode",
+    "Core/System/*->SystemDetachNode",
+    "Core/System/*->SystemGetRoot",
+    "Core/System/*->SystemCreateFile",
+    "Core/System/*->SystemCreateDirectory",
+    "Core/System/*->SystemVfsOpen",
+    "Core/System/*->SystemVfsClose",
+    "Core/System/*->SystemVfsRead",
+    "Core/System/*->SystemVfsWrite",
+    "Core/System/*->SystemVfsReaddir",
+    "Core/System/*->SystemVfsLookup",
+    "Core/System/*->SystemVfsStat",
+    "Core/System/*->SystemGetattr",
+    "Core/System/*->SystemSetattr",
+    "Core/System/*->SystemStatFs",
+    "Core/System/*->SystemSync",
+    "Core/System/*->SystemRelease",
+    "Core/System/*->SystemSetContext",
+    "Core/System/*->SystemGetContext",
+    "Core/System/*->SystemGetContextSize",
+    "Core/System/*->SystemWalkPath",
+
 };
 
 /*Another helper but to map the enum code to a error string map*/
