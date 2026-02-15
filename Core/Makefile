@@ -25,6 +25,7 @@ CFLAGS := \
 	-fno-pic \
 	-fno-builtin \
     -fno-omit-frame-pointer \
+	-ftrivial-auto-var-init=pattern \
     -m64 \
 	-march=x86-64 \
 	-mcmodel=kernel \
@@ -33,6 +34,9 @@ CFLAGS := \
 	-mno-sse \
 	-mno-sse2 \
 	-mno-80387 \
+	-fno-strict-aliasing \
+	-fno-common \
+	-fwrapv \
     -IHeaders \
 	-I../limine \
 	-MMD \

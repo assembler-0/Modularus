@@ -6,6 +6,8 @@
 
 #ifdef BUILTINS
     #include <BuiltIns/Device/UART.h>
+    #include <BuiltIns/Logger/Emitter.h>
+    #include <BuiltIns/Logger/Formatter.h>
 #endif
 
 SYSTEM_ERROR Err;
@@ -23,13 +25,11 @@ void KernelMain(void)
     /*BuiltIns*/
     #ifdef BUILTINS
         UART_KickStart(Error);
+        Emitter_KickStart(Error);
     #endif
 
     #ifdef TESTING
-        char Message[] = "\nHello World!\n";
-        FILE* File = VFS_Open("/uart", VFS_OpenFlag_WRITEONLY, Error);
-        VFS_Write(File, Message, strlen(Message), Error);
-        VFS_Close(File, Error);
+        KrnPrintf("\nHello World! But from the BuiltIn formatter!\n");
     #endif
 
     for(;;)
