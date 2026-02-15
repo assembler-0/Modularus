@@ -62,7 +62,7 @@ VFS_NodeGetAttribute(VFS_NODE* Node, VFS_STAT* Buffer, SYSTEM_ERROR* Error)
 }
 
 int
-VFS_NodeSetAttribute(VFS_NODE* Node __UNUSED, const VFS_STAT* Buffer __UNUSED, SYSTEM_ERROR* Error)
+VFS_NodeSetAttribute(VFS_NODE* Node __unused, const VFS_STAT* Buffer __unused, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_NodeSetAttribute(Code) \
         ErrorOut(Error, Code, FUNC_VFS_NodeSetAttribute)

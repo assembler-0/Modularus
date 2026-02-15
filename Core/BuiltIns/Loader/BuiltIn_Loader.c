@@ -21,17 +21,17 @@ SYSTEM_OPERATIONS LoaderOperations =
     .Setattr = NULL
 };
 
-int Loader_Open(SYSTEM_NODE* Node __UNUSED, SYSTEM_FILE* File __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+int Loader_Open(SYSTEM_NODE* Node __unused, SYSTEM_FILE* File __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }
 
-int Loader_Close(SYSTEM_FILE* File __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+int Loader_Close(SYSTEM_FILE* File __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }
 
-long Loader_Read(SYSTEM_FILE* File __UNUSED, void* Buffer, uint64_t Size, SYSTEM_ERROR* Error __UNUSED)
+long Loader_Read(SYSTEM_FILE* File __unused, void* Buffer, uint64_t Size, SYSTEM_ERROR* Error __unused)
 {
     char List[4096];
     memset(List, 0, sizeof(List));
@@ -46,7 +46,7 @@ long Loader_Read(SYSTEM_FILE* File __UNUSED, void* Buffer, uint64_t Size, SYSTEM
     return Size;
 }
 
-long Loader_Ioctl(SYSTEM_FILE* File __UNUSED, uint64_t Request, void* Arguments, SYSTEM_ERROR* Error)
+long Loader_Ioctl(SYSTEM_FILE* File __unused, uint64_t Request, void* Arguments, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_Loader_Ioctl(Code) \
         ErrorOut(Error, Code, General)
@@ -100,7 +100,7 @@ long Loader_Ioctl(SYSTEM_FILE* File __UNUSED, uint64_t Request, void* Arguments,
     }
 }
 
-int ModuleLoader_GetAttribute(SYSTEM_NODE* Node __UNUSED, VFS_STAT* Stat, SYSTEM_ERROR* Error __UNUSED)
+int ModuleLoader_GetAttribute(SYSTEM_NODE* Node __unused, VFS_STAT* Stat, SYSTEM_ERROR* Error __unused)
 {
     Stat->Size = 4096;
     return GeneralOK;
@@ -207,7 +207,7 @@ Loader_FindModule(const char* Name, SYSTEM_ERROR* Error)
 }
 
 uint64_t
-Loader_GetModuleCount(SYSTEM_ERROR* Error __UNUSED)
+Loader_GetModuleCount(SYSTEM_ERROR* Error __unused)
 {
     uint64_t Count = 0;
     for (LOADED_MODULE* Modules = LoadedModules; Modules; Modules = Modules->Next)

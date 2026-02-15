@@ -8,7 +8,7 @@ uint8_t* Ending = Pool + sizeof(Pool);
 
 static DIRTY_HEAP StaticHeap;
 
-void KickStartStaticPool(SYSTEM_ERROR* Error __UNUSED)
+void KickStartStaticPool(SYSTEM_ERROR* Error __unused)
 {
     static DIRTY_HEAP_OPERATIONS StaticOperations=
     {
@@ -37,7 +37,7 @@ void* StaticKMalloc(uint64_t Size, SYSTEM_ERROR* Error)
     return Allocation;
 }
 
-void StaticKFree(void* Pointer __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+void StaticKFree(void* Pointer __unused, SYSTEM_ERROR* Error __unused)
 {
     /* No-op */
 }

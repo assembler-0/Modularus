@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 int
-VFS_Access(const char* Path, long Mode __UNUSED, SYSTEM_ERROR* Error)
+VFS_Access(const char* Path, long Mode __unused, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_Access(Code) \
         ErrorOut(Error, Code, FUNC_VFS_Access)

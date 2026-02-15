@@ -4,19 +4,19 @@
 #include <DirtyHeap.h>
 
 int
-VFS_SetFlag(const char* Path __UNUSED, long __Flag__ __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+VFS_SetFlag(const char* Path __unused, long __Flag__ __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }
 
 int
-VFS_ClearFlag(const char* Path __UNUSED, long __Flag__ __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+VFS_ClearFlag(const char* Path __unused, long __Flag__ __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }
 
 long
-VFS_GetFlags(const char* Path __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+VFS_GetFlags(const char* Path __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }

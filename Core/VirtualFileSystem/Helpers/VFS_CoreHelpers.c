@@ -89,7 +89,7 @@ Walk(VFS_NODE* StartingNode, DIRECTORY_ENTRY* StartingDirectoryEntry, const char
 }
 
 MOUNT_ENTRY*
-FindMount(const char* Path, SYSTEM_ERROR* Error __UNUSED)
+FindMount(const char* Path, SYSTEM_ERROR* Error __unused)
 {
     long Best = -GeneralError;
     long BestLength = -GeneralError;

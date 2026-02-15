@@ -89,13 +89,13 @@ System_StatFileSystem(SUPER_BLOCK* SuperBlock, VFS_STAT_FILESYSTEM* Stat, SYSTEM
 }
 
 int
-System_Sync(SUPER_BLOCK* SuperBlock __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+System_Sync(SUPER_BLOCK* SuperBlock __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }
 
 void
-System_Release(SUPER_BLOCK* SuperBlock, SYSTEM_ERROR* Error __UNUSED)
+System_Release(SUPER_BLOCK* SuperBlock, SYSTEM_ERROR* Error __unused)
 {
     if (SystemInstance && SystemInstance->SuperBlock == SuperBlock)
     {

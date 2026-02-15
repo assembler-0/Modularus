@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 int
-VFS_RegisterDeviceNode(const char* Path, void* Private, long Flags __UNUSED, SYSTEM_ERROR* Error)
+VFS_RegisterDeviceNode(const char* Path, void* Private, long Flags __unused, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_RegisterDeviceNode(Code) \
         ErrorOut(Error, Code, FUNC_VFS_RegisterDeviceNode)
@@ -60,7 +60,7 @@ VFS_RegisterDeviceNode(const char* Path, void* Private, long Flags __UNUSED, SYS
 }
 
 int
-VFS_UnRegisterDeviceNode(const char* Path __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+VFS_UnRegisterDeviceNode(const char* Path __unused, SYSTEM_ERROR* Error __unused)
 {
     return GeneralOK;
 }
@@ -122,7 +122,7 @@ VFS_SetDefaultFileSystem(const char* Name, SYSTEM_ERROR* Error)
 }
 
 const char*
-VFS_GetDefaultFileSystem(SYSTEM_ERROR* Error __UNUSED)
+VFS_GetDefaultFileSystem(SYSTEM_ERROR* Error __unused)
 {
     return DefaultFileSystem;
 }

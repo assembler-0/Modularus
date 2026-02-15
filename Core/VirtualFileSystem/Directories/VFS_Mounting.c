@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 SUPER_BLOCK*
-VFS_Mount(const char* Device, const char* Path, const char* Type, long Flags __UNUSED, const char* Options, SYSTEM_ERROR* Error)
+VFS_Mount(const char* Device, const char* Path, const char* Type, long Flags __unused, const char* Options, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_Mount(Code) \
         ErrorOut(Error, Code, FUNC_VFS_Mount)
@@ -199,7 +199,7 @@ VFS_MoveMount(const char* Source, const char* Destination, SYSTEM_ERROR* Error)
 }
 
 int
-VFS_ReMount(const char* Path, long Flags __UNUSED, const char* Options __UNUSED, SYSTEM_ERROR* Error)
+VFS_ReMount(const char* Path, long Flags __unused, const char* Options __unused, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_ReMount(Code) \
         ErrorOut(Error, Code, FUNC_VFS_ReMount)

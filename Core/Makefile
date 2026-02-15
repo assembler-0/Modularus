@@ -35,6 +35,7 @@ CFLAGS := \
 	-mno-sse2 \
 	-mno-80387 \
 	-fno-strict-aliasing \
+	-fstack-protector-all \
 	-fno-common \
 	-fwrapv \
     -IHeaders \

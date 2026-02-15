@@ -21,7 +21,7 @@ static SYSTEM_OPERATIONS UARTOperations =
 };
 
 void
-UART_PutCharacter(char Character, SYSTEM_ERROR* Error __UNUSED)
+UART_PutCharacter(char Character, SYSTEM_ERROR* Error __unused)
 {
     while ((inb(SerialPort + UART_RegisterLineStatus) & UART_LSRTHREmpty) == 0);
     
@@ -45,20 +45,20 @@ UART_PutString(const char* String, SYSTEM_ERROR* Error)
 }
 
 uint16_t
-UART_GetPort(SYSTEM_ERROR* Error __UNUSED)
+UART_GetPort(SYSTEM_ERROR* Error __unused)
 {
     return SerialPort;
 }
 
 static long
-UART_Read(SYSTEM_FILE* File __UNUSED, void* Buffer __UNUSED,  uint64_t Size __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+UART_Read(SYSTEM_FILE* File __unused, void* Buffer __unused,  uint64_t Size __unused, SYSTEM_ERROR* Error __unused)
 {  
     /*WriteOnly*/
     return 0;
 }
 
 static long
-UART_Write(SYSTEM_FILE* File __UNUSED, const void* Buffer, uint64_t Size, SYSTEM_ERROR* Error)
+UART_Write(SYSTEM_FILE* File __unused, const void* Buffer, uint64_t Size, SYSTEM_ERROR* Error)
 {
     const char* String = (const char*)Buffer;
     for (uint64_t Index = 0; Index < Size; Index++)

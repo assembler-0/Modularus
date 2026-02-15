@@ -46,7 +46,7 @@ VFS_NODE_OPERATIONS SystemVfsOperations =
 };
 
 SUPER_BLOCK*
-System_Mount(const char* Device __UNUSED, const char* Options __UNUSED, SYSTEM_ERROR* Error)
+System_Mount(const char* Device __unused, const char* Options __unused, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_System_Mount(Code) \
         ErrorOut(Error, Code, FUNC_System_Mount)

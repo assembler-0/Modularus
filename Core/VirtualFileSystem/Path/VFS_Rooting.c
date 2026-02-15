@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 int
-VFS_SetWorkingDirectory(const char* Path __UNUSED, SYSTEM_ERROR* Error __UNUSED)
+VFS_SetWorkingDirectory(const char* Path __unused, SYSTEM_ERROR* Error __unused)
 {
     /*Defaulted to ROOT (/)*/
     /*TODO: Make it actually do something at least :sob:*/

@@ -4,7 +4,7 @@
 #include <DirtyHeap.h>
 
 int
-VFS_NodePath(VFS_NODE* Node __UNUSED, char* Buffer, long Length, SYSTEM_ERROR* Error)
+VFS_NodePath(VFS_NODE* Node __unused, char* Buffer, long Length, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_NodePath(Code) \
         ErrorOut(Error, Code, FUNC_VFS_NodePath)
@@ -29,7 +29,7 @@ VFS_NodePath(VFS_NODE* Node __UNUSED, char* Buffer, long Length, SYSTEM_ERROR* E
 }
 
 int
-VFS_NodeName(VFS_NODE* Node __UNUSED, char* Buffer, long Length, SYSTEM_ERROR* Error)
+VFS_NodeName(VFS_NODE* Node __unused, char* Buffer, long Length, SYSTEM_ERROR* Error)
 {
     #define ErrorOut_VFS_NodeName(Code) \
         ErrorOut(Error, Code, FUNC_VFS_NodeName)
@@ -139,7 +139,7 @@ VFS_SetMaxName(long Length, SYSTEM_ERROR* Error)
 }
 
 long
-VFS_GetMaxName(SYSTEM_ERROR* Error __UNUSED)
+VFS_GetMaxName(SYSTEM_ERROR* Error __unused)
 {
     return MaxName;
 }
@@ -162,7 +162,7 @@ VFS_SetMaxPath(long Length, SYSTEM_ERROR* Error)
 }
 
 long
-VFS_GetMaxPath(SYSTEM_ERROR* Error __UNUSED)
+VFS_GetMaxPath(SYSTEM_ERROR* Error __unused)
 {
     return MaxPath;
 }

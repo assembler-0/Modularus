@@ -143,7 +143,7 @@ ProcessChar(__builtin_va_list* Arguments, FORMATTER_FLAGS* Flags)
 }
 
 void
-ProcessPointer(__builtin_va_list* Arguments, FORMATTER_FLAGS* Flags __UNUSED)
+ProcessPointer(__builtin_va_list* Arguments, FORMATTER_FLAGS* Flags __unused)
 {
     void* Pointer = __builtin_va_arg(*Arguments, void*);
     char Buffer[32];
