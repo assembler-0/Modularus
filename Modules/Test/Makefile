@@ -23,6 +23,7 @@ Cflg := \
 -m64 \
 -march=x86-64 \
 -mcmodel=kernel \
+-mcmodel=large \
 -Wall \
 -Wextra \
 -Werror \

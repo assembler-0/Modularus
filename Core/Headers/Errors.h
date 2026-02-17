@@ -15,6 +15,7 @@ enum
     NotFound,
     Limits,
     BadRange,
+    BadType,
 
     /*VFS Related*/
     ENOENT,          /* No such file or directory */
@@ -240,6 +241,7 @@ ErrorMap[MaxErrors]=
     "Bad Parameters",
     "Not Found",
     "Bad Range",
+    "Bad Type",
 
     "No such file or directory",
     "Not a directory",
