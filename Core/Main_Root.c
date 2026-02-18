@@ -5,11 +5,22 @@
 #include <System.h>/*sysfs++*/
 
 #ifdef BUILTINS
-    #include <BuiltIns/Device/UART.h>
-    #include <BuiltIns/Logger/Emitter.h>
-    #include <BuiltIns/Logger/Formatter.h>
-    #include <BuiltIns/Linker/LinkerELF.h>
-    #include <BuiltIns/Loader/Loader.h>
+    #ifdef BUILTIN_UART
+        #include <BuiltIns/Device/UART.h>
+    #endif
+
+    #ifdef BUILTIN_Formatter
+        #include <BuiltIns/Logger/Emitter.h>
+        #include <BuiltIns/Logger/Formatter.h>
+    #endif
+
+    #ifdef BUILTIN_Linker
+        #include <BuiltIns/Linker/LinkerELF.h>
+    #endif
+
+    #ifdef BUILTIN_Loader
+        #include <BuiltIns/Loader/Loader.h>
+    #endif
 #endif
 
 SYSTEM_ERROR Err;
@@ -26,20 +37,37 @@ void KernelMain(void)
 
     /*BuiltIns*/
     #ifdef BUILTINS
-        UART_KickStart(Error);
-        Emitter_KickStart(Error);
-        Loader_GetModules(Error); /*So the /loader can register itself*/
+        #ifdef BUILTIN_UART
+            UART_KickStart(Error);
+        #endif
+
+        #ifdef BUILTIN_Formatter
+            Emitter_KickStart(Error);
+        #endif
+
+        #ifdef BUILTIN_Loader
+            Loader_GetModules(Error); /*So the /loader can register itself*/
+        #endif
     #endif
 
     #ifdef TESTING
-        KrnPrintf("\nHello World!\n");
-        FILE* LoaderFile = VFS_Open("/loader", VFS_OpenFlag_WRITEONLY, Error);
-        LOADED_MODULE TestModule;
-        VFS_IOControl(LoaderFile, LoaderCommand_GET, &TestModule, Error);
+        #ifdef BUILTIN_Formatter
+            KrnPrintf("\nHello World!\n");
+        #endif
+        
+        #ifdef BUILTIN_Loader
+            FILE* LoaderFile = VFS_Open("/loader", VFS_OpenFlag_WRITEONLY, Error);
+            LOADED_MODULE TestModule;
+            VFS_IOControl(LoaderFile, LoaderCommand_GET, &TestModule, Error);
+        #endif
 
         /*Should run Test.ko*/
-        Module_Link(TestModule.Address, Error);
-        Module_Run(Error);
+        #ifdef BUILTIN_Linker
+            #ifdef BUILTIN_Loader
+                Module_Link(TestModule.Address, Error);
+            #endif
+            Module_Run(Error);
+        #endif
     #endif
 
     for(;;)
