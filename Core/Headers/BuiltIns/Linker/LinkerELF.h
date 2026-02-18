@@ -97,9 +97,11 @@ typedef struct ELF64_PROGRAM_HEADER
 
 #define LinkerCommand_LINK 1
 #define LinkerCommand_RUN 2
+#define LinkerCommand_EXIT 3
 
 
 void Linker_Init(SYSTEM_ERROR*);
 
 void* Module_Link(void*, SYSTEM_ERROR*);
 void Module_Run(SYSTEM_ERROR*);
+void Module_Exit(SYSTEM_ERROR*);

@@ -53,6 +53,12 @@ long Linker_Ioctl(SYSTEM_FILE* File __unused, uint64_t Request, void* Arguments,
             return GeneralOK;
         }
 
+        case LinkerCommand_EXIT:
+        {
+            Module_Exit(Error);
+            return GeneralOK;
+        }
+
         default:
         {
             ErrorOut_Linker_Ioctl(-EINVAL);
@@ -265,4 +271,10 @@ void* Module_Link(void* ImageBase, SYSTEM_ERROR* Error)
 void Module_Run(SYSTEM_ERROR* Error __unused)
 {
     ModuleStart();
+}
+
+
+void Module_Exit(SYSTEM_ERROR* Error __unused)
+{
+    ModuleExit();
 }
