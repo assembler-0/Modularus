@@ -15,7 +15,14 @@ typedef struct LOADED_MODULE
 } LOADED_MODULE;
 
 #define LoaderCommand_LIST 1
+
 #define LoaderCommand_GET 2
+typedef struct
+{
+    const char* Name;
+    LOADED_MODULE* Out;
+} LOADER_COMMAND_GET_ARGUMENTS;
+
 #define LoaderCommand_COUNT 3
 
 extern LOADED_MODULE* LoadedModules;

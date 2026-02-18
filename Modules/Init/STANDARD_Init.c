@@ -19,7 +19,7 @@ strlen(const char* __Str__)
 int _start(void)
 {
     FILE* Uart = VFS_Open("/uart", VFS_OpenFlag_WRITEONLY, Error);
-    char String[] = "Hello World but from Test module!\n";
+    char String[] = "Hello World but from Init module!\n";
     VFS_Write(Uart, &String, strlen(String), Error);
 
     return 0;

@@ -73,23 +73,26 @@ long Loader_Ioctl(SYSTEM_FILE* File __unused, uint64_t Request, void* Arguments,
         
         case LoaderCommand_GET:
         {
-            LOADED_MODULE* Information = (LOADED_MODULE*)Arguments;
-            if (Probe4Error(Information) || !Information)
+            LOADER_COMMAND_GET_ARGUMENTS* GetCommandArguments = (LOADER_COMMAND_GET_ARGUMENTS*)Arguments;
+            if (Probe4Error(GetCommandArguments) || !GetCommandArguments || Probe4Error(GetCommandArguments->Name) || !GetCommandArguments->Name || Probe4Error(GetCommandArguments->Out) || !GetCommandArguments->Out)
             {
                 ErrorOut_Loader_Ioctl(-EINVAL);
                 return Error->ErrorCode;
             }
-            
-            if (LoadedModules)
+        
+            LOADED_MODULE* Module = Loader_FindModule(GetCommandArguments->Name, Error);
+            if (Probe4Error(Module) || !Module)
             {
-                strncpy(Information->Name, LoadedModules->Name, 255);
-                Information->Address = LoadedModules->Address;
-                Information->Size = LoadedModules->Size;
-                return GeneralOK;
+                return Error->ErrorCode;
             }
-            
-            ErrorOut_Loader_Ioctl(-ENOENT);
-            return Error->ErrorCode;
+
+            /*Copy*/
+            strncpy(GetCommandArguments->Out->Name, Module->Name, sizeof(GetCommandArguments->Out->Name) - 1);
+            GetCommandArguments->Out->Address = Module->Address;
+            GetCommandArguments->Out->Size = Module->Size;
+            GetCommandArguments->Out->Next = NULL;
+        
+            return GeneralOK;
         }
         
         default:

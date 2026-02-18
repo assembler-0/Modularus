@@ -31,8 +31,10 @@ void KernelMain(void)
     /*STANDARD*/
     VFS_KickStart(Error);
 
-    /*sysfs++ as root*/
-    System_KickStart(Error);
+    /*STANDARD*/
+    System_KickStart(Error/*As Root "/"*/);
+
+    /*STANDARD*/
     VFS_Mount("", "/", "sysfs++", 0, 0, Error);
 
     /*BuiltIns*/
@@ -55,6 +57,7 @@ void KernelMain(void)
     #endif
 
     #ifdef TESTING
+
         #ifdef BUILTIN_Formatter
             KrnPrintf("\nHello World!\n");
         #endif
@@ -62,7 +65,12 @@ void KernelMain(void)
         #ifdef BUILTIN_Loader
             FILE* LoaderFile = VFS_Open("/loader", VFS_OpenFlag_WRITEONLY, Error);
             LOADED_MODULE TestModule;
-            VFS_IOControl(LoaderFile, LoaderCommand_GET, &TestModule, Error);
+            LOADER_COMMAND_GET_ARGUMENTS TestModuleRequest =
+            {
+                .Name = "Test.ko",
+                .Out = &TestModule
+            };
+            VFS_IOControl(LoaderFile, LoaderCommand_GET, &TestModuleRequest, Error);
         #endif
 
         #ifdef BUILTIN_Linker
@@ -72,6 +80,29 @@ void KernelMain(void)
             #endif
             VFS_IOControl(LinkerFile, LinkerCommand_RUN, NULL, Error);
         #endif
+
+    #else
+
+        /*STANDARD*/
+        #ifdef BUILTIN_Loader
+            FILE* LoaderFile = VFS_Open("/loader", VFS_OpenFlag_WRITEONLY, Error);
+            LOADED_MODULE STANDARD_InitModule;
+            LOADER_COMMAND_GET_ARGUMENTS STANDARD_InitModuleRequest =
+            {
+                .Name = "STANDARD_Init.ko",
+                .Out = &STANDARD_InitModule
+            };
+            VFS_IOControl(LoaderFile, LoaderCommand_GET, &STANDARD_InitModuleRequest, Error);
+        #endif
+
+        #ifdef BUILTIN_Linker
+            #ifdef BUILTIN_Loader
+                FILE* LinkerFile = VFS_Open("/linker", VFS_OpenFlag_WRITEONLY, Error);
+                VFS_IOControl(LinkerFile, LinkerCommand_LINK, STANDARD_InitModule.Address, Error);
+            #endif
+            VFS_IOControl(LinkerFile, LinkerCommand_RUN, NULL, Error);
+        #endif
+
     #endif
 
     for(;;)
